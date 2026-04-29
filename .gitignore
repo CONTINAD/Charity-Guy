@@ -1,0 +1,16 @@
+# Original screenshot — duplicate of mascot.png
+Apr_29_2026_07_35_02_PM.png
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editor
+.vscode/
+.idea/

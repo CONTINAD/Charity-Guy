@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Just a Charity Guy — $CHARITY</title>
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Caveat:wght@500;700&family=Space+Mono:wght@400;700&family=Archivo+Black&display=swap" rel="stylesheet" />
+<style>
+  /* ---------- TOKENS ---------- */
+  :root{
+    --cream:        #ede1c8;
+    --cream-soft:   #f3ead7;
+    --cream-dark:   #d9c9a8;
+    --green:        #2d5a3d;
+    --green-deep:   #1f3d2a;
+    --green-bright: #4a9d5f;
+    --green-mint:   #b9e0c2;
+    --ink:          #14140f;
+    --coral:        #e85d3a;
+    --yellow:       #f4cf2e;
+    --pink:         #ff8fa3;
+    --shadow:       0 6px 0 var(--ink);
+    --shadow-sm:    0 3px 0 var(--ink);
+  }
+
+  /* ---------- RESET ---------- */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family: 'Space Mono', ui-monospace, monospace;
+    color: var(--ink);
+    background: var(--cream);
+    overflow-x: hidden;
+    line-height:1.5;
+    background-image:
+      radial-gradient(rgba(0,0,0,.06) 1px, transparent 1px),
+      radial-gradient(rgba(0,0,0,.04) 1px, transparent 1px);
+    background-size: 3px 3px, 7px 7px;
+    background-position: 0 0, 1px 2px;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  button{font:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+  :focus-visible{outline:3px solid var(--coral);outline-offset:3px;border-radius:4px;}
+
+  /* ---------- TYPE ---------- */
+  .display{font-family:'Bungee', sans-serif;letter-spacing:.01em;line-height:.95;text-transform:uppercase;}
+  .scribble{font-family:'Caveat', cursive;font-weight:700;}
+  .label{font-family:'Archivo Black', sans-serif;text-transform:uppercase;letter-spacing:.08em;}
+
+  /* ---------- LAYOUT ---------- */
+  .wrap{width:min(1240px, 92vw);margin-inline:auto;}
+  section{position:relative;padding:120px 0;}
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:var(--cream);
+    border-bottom:3px solid var(--ink);
+    box-shadow:0 4px 0 rgba(20,20,15,.08);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 0;gap:24px;
+  }
+  .logo{
+    display:flex;align-items:center;gap:12px;
+    font-family:'Bungee',sans-serif;font-size:18px;color:var(--green-deep);
+  }
+  .logo img{
+    width:46px;height:46px;border-radius:50%;
+    box-shadow:var(--shadow-sm);
+  }
+  .nav-links{display:flex;gap:28px;font-family:'Archivo Black',sans-serif;font-size:13px;letter-spacing:.06em;text-transform:uppercase;}
+  .nav-links a{position:relative;padding:6px 0;transition:color .2s;}
+  .nav-links a:hover{color:var(--coral);}
+  .nav-links a:hover::after{
+    content:'';position:absolute;left:-4px;right:-4px;bottom:-2px;
+    height:8px;background:var(--yellow);z-index:-1;transform:rotate(-1deg);
+  }
+  .nav-cta{
+    background:var(--coral);color:var(--cream);
+    padding:10px 18px;border:3px solid var(--ink);
+    font-family:'Archivo Black',sans-serif;font-size:13px;letter-spacing:.08em;text-transform:uppercase;
+    box-shadow:var(--shadow-sm);transition:transform .15s, box-shadow .15s;
+  }
+  .nav-cta:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink);}
+  .nav-cta:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--ink);}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:60px 0 60px;}
+  .hero-grid{
+    display:grid;grid-template-columns: 1.05fr 1fr;gap:60px;align-items:center;
+  }
+  .hero-copy{position:relative;}
+  .hero-eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    background:var(--green-mint);border:2.5px solid var(--ink);
+    padding:6px 14px;font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    transform:rotate(-2deg);box-shadow:var(--shadow-sm);
+    margin-bottom:24px;
+  }
+  .hero-eyebrow .dot{
+    width:8px;height:8px;border-radius:50%;background:var(--coral);
+    box-shadow:0 0 0 2px var(--ink);
+    animation:pulse 1.4s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.7);opacity:.6}}
+
+  .hero-title{
+    font-family:'Bungee',sans-serif;
+    font-size:clamp(54px, 8.6vw, 124px);
+    line-height:.88;color:var(--green-deep);
+    text-shadow: 6px 6px 0 var(--coral), 6px 6px 0 0 var(--ink);
+    margin-bottom:8px;
+  }
+  .hero-title span.row{display:block;}
+  .hero-title .rowB{color:var(--coral);text-shadow:6px 6px 0 var(--green-deep);}
+  .hero-title .rowC{
+    font-family:'Caveat',cursive;
+    font-size:.55em;color:var(--ink);
+    text-shadow:none;text-transform:none;
+    letter-spacing:0;font-weight:700;
+    transform:rotate(-2deg);display:inline-block;
+    margin-top:14px;
+  }
+  .hero-sub{
+    margin-top:28px;font-size:17px;max-width:520px;color:var(--green-deep);
+  }
+  .hero-sub b{background:var(--yellow);padding:2px 6px;border:2px solid var(--ink);}
+
+  .hero-ctas{margin-top:36px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:18px 28px;border:3px solid var(--ink);
+    font-family:'Archivo Black',sans-serif;font-size:15px;letter-spacing:.08em;text-transform:uppercase;
+    box-shadow:var(--shadow);transition:transform .15s, box-shadow .15s;
+  }
+  .btn-primary{background:var(--coral);color:var(--cream-soft);}
+  .btn-secondary{background:var(--cream);color:var(--ink);}
+  .btn:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink);}
+  .btn:active{transform:translate(3px,3px);box-shadow:0 0 0 var(--ink);}
+  .btn .arrow{transition:transform .2s;}
+  .btn:hover .arrow{transform:translateX(4px) rotate(-12deg);}
+
+  /* mascot side */
+  .mascot-stage{
+    position:relative;aspect-ratio: 1/1.05;width:100%;
+    display:grid;place-items:center;
+  }
+  .mascot-frame{
+    position:relative;width:100%;height:100%;
+    background:var(--cream-soft);
+    border:4px solid var(--ink);
+    box-shadow: 14px 14px 0 var(--green-deep);
+    overflow:hidden;
+    /* halftone backdrop */
+    background-image:
+      radial-gradient(var(--green-mint) 22%, transparent 24%),
+      radial-gradient(var(--green-mint) 22%, transparent 24%),
+      var(--cream-soft);
+    background-size: 18px 18px, 18px 18px;
+    background-position: 0 0, 9px 9px;
+  }
+  .mascot-frame::before{
+    /* sun rays burst behind */
+    content:'';position:absolute;inset:-30%;
+    background: conic-gradient(from 0deg, transparent 0 14deg, rgba(244,207,46,.45) 14deg 28deg, transparent 28deg 42deg);
+    background-size:100% 100%;
+    animation: spin 60s linear infinite;
+    z-index:0;opacity:.55;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .mascot-img{
+    position:absolute;left:50%;bottom:0;
+    width:88%;transform:translateX(-50%);
+    animation: float 4.5s ease-in-out infinite;
+    filter: drop-shadow(0 14px 0 rgba(20,20,15,.18));
+    z-index:2;
+  }
+  @keyframes float{
+    0%,100%{transform:translateX(-50%) translateY(0) rotate(0deg);}
+    50%{transform:translateX(-50%) translateY(-14px) rotate(-1.2deg);}
+  }
+  /* ground line under mascot */
+  .ground{
+    position:absolute;left:8%;right:8%;bottom:6%;
+    height:14px;border-radius:50%;background:rgba(20,20,15,.18);
+    filter:blur(3px);z-index:1;
+    animation: shadow-pulse 4.5s ease-in-out infinite;
+  }
+  @keyframes shadow-pulse{
+    0%,100%{transform:scaleX(1);opacity:.4;}
+    50%{transform:scaleX(.78);opacity:.25;}
+  }
+
+  /* sticker accents around mascot */
+  .sticker{
+    position:absolute;background:var(--cream);
+    border:3px solid var(--ink);box-shadow:var(--shadow-sm);
+    padding:8px 14px;font-family:'Archivo Black',sans-serif;
+    font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+    z-index:5;
+  }
+  .sticker-1{top:-18px;left:-22px;background:var(--yellow);transform:rotate(-8deg);}
+  .sticker-2{top:30%;right:-30px;background:var(--coral);color:var(--cream);transform:rotate(7deg);}
+  .sticker-3{
+    bottom:-22px;left:24%;background:var(--green);color:var(--cream);
+    transform:rotate(-3deg);
+    font-family:'Caveat',cursive;font-size:22px;letter-spacing:0;text-transform:none;
+    padding:4px 16px;
+  }
+  .sticker-coin{
+    position:absolute;width:96px;height:96px;
+    bottom:-30px;right:-30px;z-index:6;
+    animation: spin-slow 14s linear infinite;
+    filter: drop-shadow(0 4px 0 var(--ink));
+  }
+  @keyframes spin-slow{to{transform:rotate(360deg);}}
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{
+    border-block:4px solid var(--ink);
+    background:var(--green);color:var(--cream);
+    overflow:hidden;
+    padding:14px 0;
+  }
+  .marquee-track{
+    display:flex;gap:38px;white-space:nowrap;align-items:center;
+    font-family:'Bungee',sans-serif;font-size:26px;letter-spacing:.04em;
+    animation: scroll 28s linear infinite;
+  }
+  .marquee-track .row{display:inline-flex;align-items:center;gap:38px;}
+  .marquee-track .heart{color:var(--coral);font-family:'Archivo Black',sans-serif;font-size:22px;}
+  .marquee-track img{height:46px;width:auto;filter: brightness(0) invert(.95) sepia(1) hue-rotate(50deg) saturate(2) brightness(1);}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- ABOUT ---------- */
+  .about{padding:110px 0;}
+  .about-grid{
+    display:grid;grid-template-columns: 1.3fr 1fr;gap:70px;align-items:center;
+  }
+  .section-eyebrow{
+    display:inline-block;
+    font-family:'Archivo Black',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--green-deep);
+    background:var(--yellow);
+    padding:6px 12px;border:2.5px solid var(--ink);
+    box-shadow:var(--shadow-sm);transform:rotate(-1deg);margin-bottom:24px;
+  }
+  .section-title{
+    font-family:'Bungee',sans-serif;font-size:clamp(40px,5.5vw,76px);line-height:.95;
+    color:var(--green-deep);margin-bottom:24px;
+  }
+  .section-title em{
+    font-style:normal;color:var(--coral);
+    background: linear-gradient(180deg, transparent 60%, var(--yellow) 60%, var(--yellow) 90%, transparent 90%);
+    padding: 0 4px;
+  }
+  .about p{font-size:18px;color:var(--green-deep);max-width:560px;margin-bottom:18px;}
+  .about p b{background:var(--green-mint);padding:1px 6px;border:2px solid var(--ink);}
+
+  .polaroid{
+    background:var(--cream-soft);border:3px solid var(--ink);
+    padding:18px 18px 24px;box-shadow: 12px 12px 0 var(--green-deep);
+    transform:rotate(3deg);position:relative;
+    transition: transform .3s;
+  }
+  .polaroid:hover{transform:rotate(0);}
+  .polaroid::after{
+    content:'';position:absolute;top:-14px;left:50%;width:120px;height:24px;
+    background: rgba(244,207,46,.85);border:2px solid rgba(20,20,15,.45);
+    transform:translateX(-50%) rotate(-3deg);
+  }
+  .polaroid img{
+    width:100%;display:block;border:3px solid var(--ink);
+  }
+  .polaroid-cap{
+    font-family:'Caveat',cursive;font-size:26px;text-align:center;margin-top:14px;color:var(--green-deep);
+  }
+
+  /* ---------- TOKENOMICS ---------- */
+  .tokenomics{
+    background: var(--green);
+    color: var(--cream-soft);
+    border-block: 4px solid var(--ink);
+    background-image:
+      radial-gradient(rgba(255,255,255,.06) 18%, transparent 20%),
+      radial-gradient(rgba(0,0,0,.18) 18%, transparent 20%),
+      linear-gradient(var(--green),var(--green));
+    background-size: 24px 24px, 24px 24px, 100% 100%;
+    background-position: 0 0, 12px 12px, 0 0;
+  }
+  .tokenomics .section-title{color:var(--cream-soft);}
+  .tokenomics .section-title em{color:var(--yellow);background:none;}
+  .tokenomics .section-eyebrow{background:var(--yellow);color:var(--ink);}
+
+  .toko-head{display:grid;grid-template-columns: 1.4fr 1fr;gap:50px;align-items:center;margin-bottom:48px;}
+  .toko-coin{
+    width:100%;max-width:340px;justify-self:end;
+    animation: spin-slow 18s linear infinite;
+    filter: drop-shadow(0 8px 0 rgba(0,0,0,.45));
+  }
+
+  .toko-grid{
+    display:grid;grid-template-columns: repeat(4,1fr);gap:28px;
+  }
+  .toko-card{
+    background:var(--cream-soft);color:var(--ink);
+    border:3px solid var(--ink);padding:24px 22px 26px;
+    box-shadow: 8px 8px 0 var(--ink);
+    position:relative;transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .toko-card:nth-child(1){transform:rotate(-2deg);}
+  .toko-card:nth-child(2){transform:rotate(1.5deg);}
+  .toko-card:nth-child(3){transform:rotate(-1deg);}
+  .toko-card:nth-child(4){transform:rotate(2deg);}
+  .toko-card:hover{transform:rotate(0) translate(-3px,-3px);box-shadow:11px 11px 0 var(--ink);}
+  .toko-tape{
+    position:absolute;top:-14px;left:50%;width:100px;height:22px;
+    background: rgba(244,207,46,.8);border:2px solid rgba(20,20,15,.45);
+    transform:translateX(-50%) rotate(-3deg);
+  }
+  .toko-card:nth-child(2) .toko-tape{transform:translateX(-50%) rotate(4deg);background:rgba(255,143,163,.85);}
+  .toko-card:nth-child(3) .toko-tape{background:rgba(185,224,194,.95);}
+  .toko-card:nth-child(4) .toko-tape{background:rgba(232,93,58,.85);transform:translateX(-50%) rotate(2deg);}
+
+  .toko-label{font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);}
+  .toko-value{font-family:'Bungee',sans-serif;font-size:38px;line-height:1;margin-top:10px;color:var(--green-deep);}
+  .toko-note{font-family:'Caveat',cursive;font-size:20px;color:var(--coral);margin-top:14px;line-height:1.1;}
+
+  .ca-bar{
+    margin-top:56px;background:var(--cream);color:var(--ink);
+    border:3px solid var(--ink);box-shadow:var(--shadow);
+    padding:18px 22px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  }
+  .ca-label{font-family:'Archivo Black',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:var(--coral);color:var(--cream);padding:6px 10px;border:2px solid var(--ink);}
+  .ca-value{font-family:'Space Mono',monospace;font-size:14px;flex:1;min-width:240px;word-break:break-all;}
+  .ca-copy{
+    font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    background:var(--green);color:var(--cream);padding:8px 14px;border:2.5px solid var(--ink);
+    box-shadow:var(--shadow-sm);transition:transform .15s, box-shadow .15s;
+  }
+  .ca-copy:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink);}
+  .ca-copy:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--ink);}
+
+  /* ---------- HOW TO BUY ---------- */
+  .buy{padding:130px 0;position:relative;overflow:hidden;}
+  .buy-bg-mascot{
+    position:absolute;right:-80px;bottom:-80px;width:380px;
+    opacity:.12;pointer-events:none;z-index:0;
+    transform:rotate(-12deg);
+  }
+  .buy > .wrap{position:relative;z-index:1;}
+  .buy-head{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap;margin-bottom:60px;}
+  .buy-head .scribble-note{
+    font-family:'Caveat',cursive;font-size:26px;color:var(--green-deep);
+    max-width:340px;transform:rotate(-2deg);
+    border-left:4px solid var(--coral);padding-left:14px;
+  }
+  .steps{display:grid;grid-template-columns: repeat(4,1fr);gap:24px;position:relative;}
+  .step{
+    background:var(--cream-soft);border:3px solid var(--ink);
+    padding:28px 22px 26px;box-shadow:var(--shadow);position:relative;
+    transition: transform .25s, box-shadow .25s;
+  }
+  .step:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink);}
+  .step-num{
+    position:absolute;top:-22px;left:-22px;
+    width:54px;height:54px;border-radius:50%;
+    background:var(--coral);color:var(--cream);border:3px solid var(--ink);
+    display:grid;place-items:center;font-family:'Bungee',sans-serif;font-size:24px;
+    box-shadow:var(--shadow-sm);
+  }
+  .step:nth-child(2) .step-num{background:var(--yellow);color:var(--ink);}
+  .step:nth-child(3) .step-num{background:var(--green-bright);color:var(--cream);}
+  .step:nth-child(4) .step-num{background:var(--pink);color:var(--ink);}
+  .step h3{font-family:'Bungee',sans-serif;font-size:20px;color:var(--green-deep);margin-bottom:10px;line-height:1;}
+  .step p{font-size:14px;color:var(--ink);}
+  .step .scribble-tag{
+    position:absolute;bottom:-16px;right:14px;
+    font-family:'Caveat',cursive;font-size:22px;color:var(--coral);
+    background:var(--cream);border:2px solid var(--ink);padding:0 8px;
+    transform:rotate(-3deg);
+  }
+
+  /* ---------- ROADMAP ---------- */
+  .roadmap{
+    background:var(--cream-dark);border-block:4px solid var(--ink);
+    background-image:
+      repeating-linear-gradient(45deg, rgba(20,20,15,.04) 0 2px, transparent 2px 14px);
+    position:relative;overflow:hidden;
+  }
+  .road-watermark{
+    position:absolute;left:-60px;top:60px;width:280px;opacity:.16;
+    transform:rotate(-10deg);pointer-events:none;
+  }
+  .road-grid{display:grid;grid-template-columns: repeat(4,1fr);gap:28px;margin-top:48px;position:relative;z-index:1;}
+  .road-card{
+    background:var(--cream-soft);border:3px solid var(--ink);
+    padding:26px 22px;box-shadow:var(--shadow);
+    position:relative;
+  }
+  .road-card:nth-child(odd){transform:rotate(-1.2deg);}
+  .road-card:nth-child(even){transform:rotate(1.2deg);}
+  .road-stamp{
+    position:absolute;top:14px;right:14px;
+    font-family:'Archivo Black',sans-serif;font-size:10px;letter-spacing:.16em;
+    color:var(--coral);border:2.5px solid var(--coral);padding:4px 8px;border-radius:4px;
+    transform:rotate(-8deg);text-transform:uppercase;
+    opacity:.85;
+  }
+  .road-card.done .road-stamp{color:var(--green-bright);border-color:var(--green-bright);}
+  .road-phase{font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--green);}
+  .road-title{font-family:'Bungee',sans-serif;font-size:22px;color:var(--green-deep);margin:8px 0 16px;line-height:1;}
+  .road-list{list-style:none;display:grid;gap:8px;}
+  .road-list li{
+    display:flex;align-items:flex-start;gap:8px;font-size:14px;
+  }
+  .road-list li::before{
+    content:'✓';color:var(--coral);font-family:'Bungee',sans-serif;font-size:14px;line-height:1.2;
+  }
+  .road-card:not(.done) .road-list li::before{content:'☐';color:var(--ink);opacity:.6;}
+
+  /* ---------- COMMUNITY/SOCIALS ---------- */
+  .socials{padding:130px 0;}
+  .social-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:50px;}
+  .social{
+    display:flex;flex-direction:column;justify-content:space-between;
+    background:var(--cream-soft);border:3px solid var(--ink);
+    padding:26px;min-height:200px;box-shadow:var(--shadow);
+    transition:transform .2s, box-shadow .2s;
+    position:relative;overflow:hidden;
+  }
+  .social:hover{transform:translate(-3px,-3px) rotate(-1deg);box-shadow:11px 11px 0 var(--ink);}
+  .social.x{background:var(--ink);color:var(--cream);}
+  .social.tg{background:var(--green-bright);color:var(--cream);}
+  .social.dex{background:var(--yellow);color:var(--ink);}
+  .social.tg-chat{background:var(--coral);color:var(--cream);}
+
+  .social-icon{font-family:'Bungee',sans-serif;font-size:48px;line-height:1;}
+  .social h4{font-family:'Bungee',sans-serif;font-size:22px;line-height:1;margin-top:18px;}
+  .social p{font-family:'Space Mono',monospace;font-size:13px;margin-top:6px;opacity:.8;}
+  .social .arrow-out{
+    position:absolute;top:18px;right:20px;font-family:'Bungee',sans-serif;font-size:22px;
+  }
+
+  /* ---------- CALLOUT ---------- */
+  .callout{
+    background:var(--coral);color:var(--cream-soft);
+    border-block:4px solid var(--ink);
+    padding:80px 0;text-align:center;position:relative;overflow:hidden;
+  }
+  .callout-mascot{
+    position:absolute;left:-40px;bottom:-40px;width:240px;
+    transform:rotate(-12deg);opacity:.95;
+    filter: drop-shadow(0 8px 0 rgba(0,0,0,.25));
+    pointer-events:none;
+  }
+  .callout-mascot.right{left:auto;right:-40px;transform:rotate(8deg);}
+  .callout::before, .callout::after{
+    content:'❤';position:absolute;font-size:300px;font-family:'Archivo Black',sans-serif;
+    color:rgba(255,255,255,.08);line-height:1;
+  }
+  .callout::before{left:-40px;top:-80px;transform:rotate(-12deg);}
+  .callout::after{right:-30px;bottom:-120px;transform:rotate(18deg);}
+  .callout h2{font-family:'Bungee',sans-serif;font-size:clamp(36px,5vw,68px);line-height:.95;margin-bottom:18px;position:relative;z-index:2;}
+  .callout p{font-size:16px;max-width:540px;margin:0 auto 30px;position:relative;z-index:2;}
+  .callout .btn{background:var(--cream-soft);color:var(--ink);position:relative;z-index:2;}
+  .callout .btn:hover{background:var(--yellow);}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--green-deep);color:var(--cream);
+    border-top:4px solid var(--ink);
+    padding:60px 0 40px;
+  }
+  .foot{
+    display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px;align-items:start;
+  }
+  .foot-brand{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+  .foot-brand img{width:54px;height:54px;border-radius:50%;border:3px solid var(--cream);}
+  .foot-brand span{font-family:'Bungee',sans-serif;font-size:24px;line-height:.95;}
+  .foot p, .foot a{font-size:13px;opacity:.85;}
+  .foot a:hover{color:var(--yellow);}
+  .foot ul{list-style:none;display:grid;gap:8px;}
+  .foot h5{font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px;color:var(--green-mint);}
+  .foot-bottom{
+    margin-top:50px;padding-top:24px;border-top:1.5px dashed rgba(255,255,255,.25);
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+    font-family:'Space Mono',monospace;font-size:11px;opacity:.75;
+  }
+
+  /* ---------- DECORATIVE BITS ---------- */
+  .floaty{
+    position:absolute;font-family:'Bungee',sans-serif;font-size:34px;
+    color:var(--green-deep);opacity:.55;pointer-events:none;user-select:none;
+  }
+  .stamp{
+    display:inline-block;font-family:'Archivo Black',sans-serif;
+    border:3px solid var(--coral);color:var(--coral);
+    padding:6px 12px;letter-spacing:.16em;text-transform:uppercase;font-size:12px;
+    transform:rotate(-6deg);
+    background:rgba(255,255,255,.4);
+  }
+
+  /* ---------- REVEAL ANIMATION ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .55s ease, transform .55s cubic-bezier(.2,.9,.3,1.2);}
+  .reveal.is-in{opacity:1;transform:translateY(0);}
+  /* preserve the per-card rotation transforms once revealed */
+  .toko-card.reveal.is-in:nth-child(1){transform:rotate(-2deg);}
+  .toko-card.reveal.is-in:nth-child(2){transform:rotate(1.5deg);}
+  .toko-card.reveal.is-in:nth-child(3){transform:rotate(-1deg);}
+  .toko-card.reveal.is-in:nth-child(4){transform:rotate(2deg);}
+  .road-card.reveal.is-in:nth-child(odd){transform:rotate(-1.2deg);}
+  .road-card.reveal.is-in:nth-child(even){transform:rotate(1.2deg);}
+  .polaroid.reveal.is-in{transform:rotate(3deg);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+
+  /* ---------- COPY TOAST ---------- */
+  .toast{
+    position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(120%);
+    background:var(--ink);color:var(--cream);padding:14px 22px;
+    border:3px solid var(--cream);box-shadow:var(--shadow);
+    font-family:'Archivo Black',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;
+    z-index:200;transition: transform .35s cubic-bezier(.2,.9,.3,1.4);
+  }
+  .toast.show{transform:translateX(-50%) translateY(0);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 980px){
+    .hero-grid, .about-grid, .foot, .toko-head{grid-template-columns:1fr;}
+    .toko-grid, .steps, .road-grid, .social-grid{grid-template-columns:repeat(2,1fr);}
+    .nav-links{display:none;}
+    section{padding:80px 0;}
+    .hero-title{text-shadow: 4px 4px 0 var(--coral), 4px 4px 0 0 var(--ink);}
+    .mascot-stage{aspect-ratio:1;max-width:480px;margin-inline:auto;}
+    .toko-coin{justify-self:center;max-width:240px;}
+    .callout-mascot{width:160px;}
+  }
+  @media (max-width: 560px){
+    .toko-grid, .steps, .road-grid, .social-grid{grid-template-columns:1fr;}
+    .hero-title{font-size:54px;}
+    .marquee-track{font-size:22px;gap:24px;}
+    .marquee-track .row{gap:24px;}
+    .marquee-track img{height:36px;}
+    .step-num{left:50%;transform:translateX(-50%);top:-26px;}
+    .step{padding-top:38px;}
+    .callout-mascot{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo">
+      <img src="mascot_logo.png" alt="" />
+      <span>Just&nbsp;a&nbsp;Charity&nbsp;Guy</span>
+    </a>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#tokenomics">Tokenomics</a>
+      <a href="#buy">How to Buy</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#community">Community</a>
+    </div>
+    <a href="#buy" class="nav-cta">Buy $CHARITY</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <span class="floaty" style="top:60px;left:4%;transform:rotate(-12deg);">$$$</span>
+  <span class="floaty" style="top:140px;right:6%;transform:rotate(8deg);font-size:48px;">★</span>
+  <span class="floaty" style="bottom:-10px;left:48%;transform:rotate(-4deg);">♥ ♥ ♥</span>
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <div class="hero-eyebrow"><span class="dot"></span> Live on chain · ticker $CHARITY</div>
+      <h1 class="hero-title">
+        <span class="row">Just&nbsp;a</span>
+        <span class="row rowB">Charity</span>
+        <span class="row">Guy</span>
+        <span class="row rowC">…doing his little charity, you know?</span>
+      </h1>
+      <p class="hero-sub">
+        He wears the cap. He wears the shirt. He's <b>just doing charity</b>.
+        No promises. No utility. Just a guy &mdash; and a community of guys &mdash;
+        spreading good vibes and (allegedly) green candles.
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="#buy">Buy $CHARITY <span class="arrow">→</span></a>
+        <a class="btn btn-secondary" href="#community">Join the Pack <span class="arrow">→</span></a>
+      </div>
+    </div>
+
+    <div class="mascot-stage">
+      <div class="sticker sticker-1">100% Wholesome</div>
+      <div class="sticker sticker-2">Certified Guy</div>
+      <div class="sticker sticker-3">a real one ♥</div>
+      <div class="mascot-frame">
+        <div class="ground"></div>
+        <img class="mascot-img" src="mascot_cutout.png" alt="Just a Charity Guy mascot — a smiling cartoon dog wearing a green CHARITY cap and tee" />
+      </div>
+      <img class="sticker-coin" src="coin.png" alt="" />
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="row">
+      JUST A CHARITY GUY <img src="mascot_silhouette_green.png" alt="" />
+      $CHARITY <span class="heart">♥</span>
+      SPREAD THE LOVE <img src="mascot_silhouette_green.png" alt="" />
+      NO ROADMAP, JUST VIBES <span class="heart">♥</span>
+      CERTIFIED GUY <img src="mascot_silhouette_green.png" alt="" />
+    </span>
+    <span class="row">
+      JUST A CHARITY GUY <img src="mascot_silhouette_green.png" alt="" />
+      $CHARITY <span class="heart">♥</span>
+      SPREAD THE LOVE <img src="mascot_silhouette_green.png" alt="" />
+      NO ROADMAP, JUST VIBES <span class="heart">♥</span>
+      CERTIFIED GUY <img src="mascot_silhouette_green.png" alt="" />
+    </span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="section-eyebrow">A Brief Word</span>
+      <h2 class="section-title">He's not <em>doing</em> much. He's just <em>around</em>.</h2>
+      <p>
+        Some memecoins promise the moon. Some promise a metaverse. <b>Just a Charity Guy</b>
+        promises absolutely nothing &mdash; and that&rsquo;s the bit.
+      </p>
+      <p>
+        He&rsquo;s a dog in a charity cap. He runs a little 5K every Sunday.
+        He&rsquo;s probably got a clipboard. He&rsquo;d like you to consider buying $CHARITY,
+        if it&rsquo;s not too much trouble.
+      </p>
+      <p style="margin-top:20px;">
+        <span class="stamp">community-owned</span>
+        &nbsp;
+        <span class="stamp" style="border-color:var(--green);color:var(--green);">no team wallet</span>
+      </p>
+    </div>
+
+    <div class="polaroid">
+      <img src="mascot_card.png" alt="Charity Guy portrait" />
+      <div class="polaroid-cap">"just a guy doing his thing"</div>
+    </div>
+  </div>
+</section>
+
+<!-- TOKENOMICS -->
+<section class="tokenomics" id="tokenomics">
+  <div class="wrap">
+    <div class="toko-head">
+      <div>
+        <span class="section-eyebrow">The Numbers</span>
+        <h2 class="section-title">Tokenomics <em>(very serious)</em></h2>
+        <p style="font-size:16px;max-width:520px;opacity:.92;">
+          Renounced. Burned. Locked in cap-and-tee armor. The kind of tokenomics
+          that lets the guy sleep at night.
+        </p>
+      </div>
+      <img src="coin.png" alt="" class="toko-coin" />
+    </div>
+
+    <div class="toko-grid">
+      <article class="toko-card">
+        <span class="toko-tape"></span>
+        <div class="toko-label">Total Supply</div>
+        <div class="toko-value">1B</div>
+        <div class="toko-note">one billion guys, max.</div>
+      </article>
+      <article class="toko-card">
+        <span class="toko-tape"></span>
+        <div class="toko-label">Tax</div>
+        <div class="toko-value">0 / 0</div>
+        <div class="toko-note">buy &amp; sell. easy.</div>
+      </article>
+      <article class="toko-card">
+        <span class="toko-tape"></span>
+        <div class="toko-label">Liquidity</div>
+        <div class="toko-value">🔥</div>
+        <div class="toko-note">burned. gone. cooked.</div>
+      </article>
+      <article class="toko-card">
+        <span class="toko-tape"></span>
+        <div class="toko-label">Charity</div>
+        <div class="toko-value">100%</div>
+        <div class="toko-note">to your bag, hopefully.</div>
+      </article>
+    </div>
+
+    <div class="ca-bar" id="ca">
+      <span class="ca-label">Contract</span>
+      <span class="ca-value" id="ca-value">CHRTYxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</span>
+      <button class="ca-copy" id="ca-copy">Copy CA</button>
+    </div>
+  </div>
+</section>
+
+<!-- HOW TO BUY -->
+<section class="buy" id="buy">
+  <img src="mascot_silhouette_green.png" alt="" class="buy-bg-mascot" />
+  <div class="wrap">
+    <div class="buy-head">
+      <div>
+        <span class="section-eyebrow">Step by Step</span>
+        <h2 class="section-title">How to <em>Charity</em>.</h2>
+      </div>
+      <p class="scribble-note">
+        takes 4 minutes &mdash; less time than your morning coffee, more meaningful than a LinkedIn post
+      </p>
+    </div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Get a Wallet</h3>
+        <p>Download Phantom (Solana) or MetaMask (ETH). Save the seed phrase. Don&rsquo;t screenshot it.</p>
+        <span class="scribble-tag">srsly tho</span>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Fund It</h3>
+        <p>Send some SOL or ETH from your exchange of choice. A little goes a long way.</p>
+        <span class="scribble-tag">~$20 fine</span>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Find $CHARITY</h3>
+        <p>Open Jupiter or Uniswap. Paste the contract address from above. Double-check it.</p>
+        <span class="scribble-tag">don&rsquo;t fomo</span>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Be a Guy</h3>
+        <p>Swap. Hold. Touch grass. Tell your friends. Wear a metaphorical cap.</p>
+        <span class="scribble-tag">welcome ♥</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section class="roadmap" id="roadmap">
+  <img src="mascot_silhouette_green.png" alt="" class="road-watermark" />
+  <div class="wrap">
+    <span class="section-eyebrow">The Plan (loose)</span>
+    <h2 class="section-title">Roadmap to <em>Charity Town</em></h2>
+
+    <div class="road-grid">
+      <article class="road-card done">
+        <span class="road-stamp">Shipped</span>
+        <div class="road-phase">Phase 01</div>
+        <h3 class="road-title">Be a Guy</h3>
+        <ul class="road-list">
+          <li>Acquire cap</li>
+          <li>Acquire shirt</li>
+          <li>Begin charity</li>
+        </ul>
+      </article>
+      <article class="road-card done">
+        <span class="road-stamp">Shipped</span>
+        <div class="road-phase">Phase 02</div>
+        <h3 class="road-title">Get on Chain</h3>
+        <ul class="road-list">
+          <li>Mint token</li>
+          <li>Burn LP</li>
+          <li>Renounce keys</li>
+        </ul>
+      </article>
+      <article class="road-card">
+        <span class="road-stamp">In Progress</span>
+        <div class="road-phase">Phase 03</div>
+        <h3 class="road-title">Get the Word Out</h3>
+        <ul class="road-list">
+          <li>1,000 holders</li>
+          <li>CMC &amp; CG listings</li>
+          <li>Tier-1 CEX (probably)</li>
+        </ul>
+      </article>
+      <article class="road-card">
+        <span class="road-stamp">Soon™</span>
+        <div class="road-phase">Phase 04</div>
+        <h3 class="road-title">Charity Mountain</h3>
+        <ul class="road-list">
+          <li>Real charity drop</li>
+          <li>Animated short film</li>
+          <li>Plushies. Many.</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CALLOUT -->
+<section class="callout">
+  <img src="mascot_cutout.png" alt="" class="callout-mascot" />
+  <img src="mascot_cutout.png" alt="" class="callout-mascot right" />
+  <div class="wrap">
+    <h2>You could just &mdash; you know &mdash; be a guy too.</h2>
+    <p>One token. One community. Zero pressure. The cap fits everyone.</p>
+    <a class="btn" href="#buy">Get $CHARITY <span class="arrow">→</span></a>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section class="socials" id="community">
+  <div class="wrap">
+    <span class="section-eyebrow">Where the Guys Go</span>
+    <h2 class="section-title">Join the <em>Pack</em>.</h2>
+
+    <div class="social-grid">
+      <a class="social x" href="#" target="_blank" rel="noopener">
+        <span class="arrow-out">↗</span>
+        <div class="social-icon">𝕏</div>
+        <div>
+          <h4>Twitter</h4>
+          <p>@justacharityguy</p>
+        </div>
+      </a>
+      <a class="social tg" href="#" target="_blank" rel="noopener">
+        <span class="arrow-out">↗</span>
+        <div class="social-icon">✈</div>
+        <div>
+          <h4>Telegram</h4>
+          <p>t.me/justacharityguy</p>
+        </div>
+      </a>
+      <a class="social dex" href="#" target="_blank" rel="noopener">
+        <span class="arrow-out">↗</span>
+        <div class="social-icon">📈</div>
+        <div>
+          <h4>DexScreener</h4>
+          <p>chart go up (please)</p>
+        </div>
+      </a>
+      <a class="social tg-chat" href="#" target="_blank" rel="noopener">
+        <span class="arrow-out">↗</span>
+        <div class="social-icon">♥</div>
+        <div>
+          <h4>Buy Now</h4>
+          <p>swap on Jupiter</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div class="foot-brand">
+        <img src="mascot_logo.png" alt="" />
+        <span>Just a Charity Guy.</span>
+      </div>
+      <p>An on-chain memecoin starring a dog in a charity cap. No utility, no roadmap (well, that fake one above), no promises &mdash; just a community of guys.</p>
+    </div>
+    <div>
+      <h5>Navigate</h5>
+      <ul>
+        <li><a href="#about">About the Guy</a></li>
+        <li><a href="#tokenomics">Tokenomics</a></li>
+        <li><a href="#buy">How to Buy</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Receipts</h5>
+      <ul>
+        <li><a href="#" target="_blank" rel="noopener">DexScreener</a></li>
+        <li><a href="#" target="_blank" rel="noopener">Solscan / Etherscan</a></li>
+        <li><a href="#" target="_blank" rel="noopener">LP Burn TX</a></li>
+        <li><a href="#" target="_blank" rel="noopener">Audit (lol)</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© <span id="yr"></span> Just a Charity Guy. All rights tenderly reserved.</span>
+    <span>Not financial advice. Memes are memes. DYOR. ♥</span>
+  </div>
+</footer>
+
+<div class="toast" id="toast">CA copied to clipboard ♥</div>
+
+<script>
+  // year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // copy CA
+  const caBtn  = document.getElementById('ca-copy');
+  const caVal  = document.getElementById('ca-value');
+  const toast  = document.getElementById('toast');
+  caBtn.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(caVal.textContent.trim());
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 1800);
+    } catch (e) {
+      toast.textContent = 'Couldn’t copy — select it manually';
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+  });
+
+  // tiny parallax wobble on mascot
+  const mascot = document.querySelector('.mascot-img');
+  if (mascot && window.matchMedia('(pointer:fine)').matches) {
+    document.addEventListener('mousemove', (e) => {
+      const x = (e.clientX / window.innerWidth - .5) * 14;
+      const y = (e.clientY / window.innerHeight - .5) * 8;
+      mascot.style.setProperty('--mx', x + 'px');
+      mascot.style.setProperty('--my', y + 'px');
+      mascot.style.transform = `translateX(calc(-50% + ${x}px)) translateY(${y}px)`;
+    });
+  }
+
+  // reveal on scroll for cards (safe — defaults to visible, animation only on intersect)
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(en => {
+        if (en.isIntersecting) {
+          en.target.classList.add('is-in');
+          obs.unobserve(en.target);
+        }
+      });
+    }, { threshold: .08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.toko-card, .step, .road-card, .social, .polaroid').forEach(el => {
+      el.classList.add('reveal');
+      io.observe(el);
+    });
+    // safety net: if anything is still hidden after 1.5s, reveal it
+    setTimeout(() => {
+      document.querySelectorAll('.reveal:not(.is-in)').forEach(el => el.classList.add('is-in'));
+    }, 1500);
+  }
+</script>
+</body>
+</html>
