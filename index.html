@@ -81,6 +81,19 @@
     content:'';position:absolute;left:-4px;right:-4px;bottom:-2px;
     height:8px;background:var(--yellow);z-index:-1;transform:rotate(-1deg);
   }
+  .nav-pumpfun{
+    display:none;
+  }
+  @media (min-width: 1100px){
+    .nav-pumpfun{
+      display:inline-flex;align-items:center;gap:6px;
+      font-family:'Archivo Black',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+      background:var(--green-mint);color:var(--green-deep);
+      padding:6px 10px;border:2px solid var(--ink);
+      box-shadow: var(--shadow-sm);
+      transform:rotate(-2deg);
+    }
+  }
   .nav-cta{
     background:var(--coral);color:var(--cream);
     padding:10px 18px;border:3px solid var(--ink);
@@ -506,6 +519,40 @@
   }
   .road-card:not(.done) .road-list li::before{content:'☐';color:var(--ink);opacity:.6;}
 
+  /* ---------- FLOW ---------- */
+  .flow{padding:120px 0;background:var(--cream-soft);border-block:4px solid var(--ink);
+    background-image: repeating-linear-gradient(-45deg, rgba(20,20,15,.03) 0 2px, transparent 2px 16px);
+  }
+  .flow-grid{
+    display:grid;grid-template-columns: 1fr auto 1fr auto 1fr;gap:24px;
+    align-items:stretch;margin-top:48px;
+  }
+  .flow-step{
+    background:var(--cream);border:3px solid var(--ink);
+    box-shadow: var(--shadow);padding:28px 24px;
+    position:relative;
+  }
+  .flow-step:nth-child(1){transform:rotate(-1deg);}
+  .flow-step:nth-child(3){transform:rotate(1deg);}
+  .flow-step:nth-child(5){transform:rotate(-.8deg);}
+  .flow-num{
+    font-family:'Bungee',sans-serif;font-size:56px;
+    color:var(--green-mint);line-height:1;margin-bottom:6px;
+    -webkit-text-stroke: 2px var(--green-deep);
+  }
+  .flow-step h3{font-family:'Bungee',sans-serif;font-size:20px;color:var(--green-deep);line-height:1;margin-bottom:10px;}
+  .flow-step p{font-size:14px;color:var(--ink);}
+  .flow-step p b{background:var(--yellow);padding:1px 6px;border:2px solid var(--ink);}
+  .flow-arrow{
+    display:grid;place-items:center;
+    font-family:'Bungee',sans-serif;font-size:48px;color:var(--coral);
+    align-self:center;
+  }
+  @media (max-width: 980px){
+    .flow-grid{grid-template-columns:1fr;}
+    .flow-arrow{transform:rotate(90deg);}
+  }
+
   /* ---------- COMMUNITY/SOCIALS ---------- */
   .socials{padding:130px 0;}
   .social-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:50px;}
@@ -663,7 +710,7 @@
   <span class="floaty" style="bottom:-10px;left:48%;transform:rotate(-4deg);">♥ ♥ ♥</span>
   <div class="wrap hero-grid">
     <div class="hero-copy">
-      <div class="hero-eyebrow"><span class="dot"></span> Live on chain · ticker $CHARITY</div>
+      <div class="hero-eyebrow"><span class="dot"></span> Live on pump.fun · ticker $CHARITY</div>
       <h1 class="hero-title">
         <span class="row">Just&nbsp;a</span>
         <span class="row rowB">Charity</span>
@@ -671,9 +718,10 @@
         <span class="row rowC">…doing his little charity, you know?</span>
       </h1>
       <p class="hero-sub">
-        He wears the cap. He wears the shirt. He's <b>just doing charity</b>.
-        No promises. No utility. Just a guy &mdash; and a community of guys &mdash;
-        spreading good vibes and (allegedly) green candles.
+        He wears the cap. He wears the shirt. He's <b>actually doing charity</b>.
+        Launched on pump.fun with <b>100% of creator fees</b> routed to real
+        charities &mdash; chosen by the community, paid out on-chain,
+        receipts public.
       </p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="#buy">Buy $CHARITY <span class="arrow">→</span></a>
@@ -711,7 +759,7 @@
       </div>
     </div>
     <p class="ca-banner-note">
-      always verify the CA before swapping &mdash; impersonators exist, the guy does not endorse them
+      always verify the CA on pump.fun before swapping &mdash; impersonators exist, the guy does not endorse them
     </p>
   </div>
 </section>
@@ -721,17 +769,17 @@
   <div class="marquee-track">
     <span class="row">
       JUST A CHARITY GUY <img src="mascot_silhouette_green.png" alt="" />
-      $CHARITY <span class="heart">♥</span>
-      SPREAD THE LOVE <img src="mascot_silhouette_green.png" alt="" />
-      NO ROADMAP, JUST VIBES <span class="heart">♥</span>
-      CERTIFIED GUY <img src="mascot_silhouette_green.png" alt="" />
+      100% FEES → CHARITY <span class="heart">♥</span>
+      LIVE ON PUMP.FUN <img src="mascot_silhouette_green.png" alt="" />
+      TRADE THE MEME, FUND THE CAUSE <span class="heart">♥</span>
+      $CHARITY <img src="mascot_silhouette_green.png" alt="" />
     </span>
     <span class="row">
       JUST A CHARITY GUY <img src="mascot_silhouette_green.png" alt="" />
-      $CHARITY <span class="heart">♥</span>
-      SPREAD THE LOVE <img src="mascot_silhouette_green.png" alt="" />
-      NO ROADMAP, JUST VIBES <span class="heart">♥</span>
-      CERTIFIED GUY <img src="mascot_silhouette_green.png" alt="" />
+      100% FEES → CHARITY <span class="heart">♥</span>
+      LIVE ON PUMP.FUN <img src="mascot_silhouette_green.png" alt="" />
+      TRADE THE MEME, FUND THE CAUSE <span class="heart">♥</span>
+      $CHARITY <img src="mascot_silhouette_green.png" alt="" />
     </span>
   </div>
 </div>
@@ -741,20 +789,20 @@
   <div class="wrap about-grid">
     <div>
       <span class="section-eyebrow">A Brief Word</span>
-      <h2 class="section-title">He's not <em>doing</em> much. He's just <em>around</em>.</h2>
+      <h2 class="section-title">A meme coin that <em>actually</em> gives.</h2>
       <p>
-        Some memecoins promise the moon. Some promise a metaverse. <b>Just a Charity Guy</b>
-        promises absolutely nothing &mdash; and that&rsquo;s the bit.
+        Pump.fun shipped a feature where <b>100% of a token&rsquo;s creator fees can be routed
+        directly to charities</b>. Every swap of $CHARITY mints a fee &mdash; that fee goes
+        straight to real-world charities chosen by the community.
       </p>
       <p>
-        He&rsquo;s a dog in a charity cap. He runs a little 5K every Sunday.
-        He&rsquo;s probably got a clipboard. He&rsquo;d like you to consider buying $CHARITY,
-        if it&rsquo;s not too much trouble.
+        No team cut. No multisig dipping in. The cap-wearing dog up there is the brand;
+        the on-chain receipts are the proof. <b>Trade the meme. Fund the cause.</b>
       </p>
       <p style="margin-top:20px;">
-        <span class="stamp">community-owned</span>
+        <span class="stamp">100% fees → charity</span>
         &nbsp;
-        <span class="stamp" style="border-color:var(--green);color:var(--green);">no team wallet</span>
+        <span class="stamp" style="border-color:var(--green);color:var(--green);">on-chain receipts</span>
       </p>
     </div>
 
@@ -773,8 +821,8 @@
         <span class="section-eyebrow">The Numbers</span>
         <h2 class="section-title">Tokenomics <em>(very serious)</em></h2>
         <p style="font-size:16px;max-width:520px;opacity:.92;">
-          Renounced. Burned. Locked in cap-and-tee armor. The kind of tokenomics
-          that lets the guy sleep at night.
+          Launched on pump.fun. <b style="color:var(--yellow);">100% of creator fees flow
+          to community-picked charities</b> &mdash; verifiable on-chain, every wallet, every block.
         </p>
       </div>
       <img src="coin.png" alt="" class="toko-coin" />
@@ -801,9 +849,9 @@
       </article>
       <article class="toko-card">
         <span class="toko-tape"></span>
-        <div class="toko-label">Charity</div>
+        <div class="toko-label">Creator Fees</div>
         <div class="toko-value">100%</div>
-        <div class="toko-note">to your bag, hopefully.</div>
+        <div class="toko-note">→ to charity. for real.</div>
       </article>
     </div>
 
@@ -832,26 +880,26 @@
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
-        <h3>Get a Wallet</h3>
-        <p>Download Phantom (Solana) or MetaMask (ETH). Save the seed phrase. Don&rsquo;t screenshot it.</p>
+        <h3>Get Phantom</h3>
+        <p>Download Phantom or any Solana wallet. Save the seed phrase. Don&rsquo;t screenshot it.</p>
         <span class="scribble-tag">srsly tho</span>
       </div>
       <div class="step">
         <div class="step-num">2</div>
-        <h3>Fund It</h3>
-        <p>Send some SOL or ETH from your exchange of choice. A little goes a long way.</p>
+        <h3>Fund with SOL</h3>
+        <p>Buy SOL on your exchange of choice and send it over. A little goes a long way.</p>
         <span class="scribble-tag">~$20 fine</span>
       </div>
       <div class="step">
         <div class="step-num">3</div>
-        <h3>Find $CHARITY</h3>
-        <p>Open Jupiter or Uniswap. Paste the contract address from above. Double-check it.</p>
+        <h3>Swap on pump.fun</h3>
+        <p>Open the $CHARITY page on pump.fun (or Jupiter). Paste the CA. Verify it matches.</p>
         <span class="scribble-tag">don&rsquo;t fomo</span>
       </div>
       <div class="step">
         <div class="step-num">4</div>
-        <h3>Be a Guy</h3>
-        <p>Swap. Hold. Touch grass. Tell your friends. Wear a metaphorical cap.</p>
+        <h3>You Did Charity</h3>
+        <p>Every swap routes 100% of creator fees to charity. Hold the bag, fund the cause.</p>
         <span class="scribble-tag">welcome ♥</span>
       </div>
     </div>
@@ -899,13 +947,40 @@
       <article class="road-card">
         <span class="road-stamp">Soon™</span>
         <div class="road-phase">Phase 04</div>
-        <h3 class="road-title">Charity Mountain</h3>
+        <h3 class="road-title">First Donation</h3>
         <ul class="road-list">
-          <li>Real charity drop</li>
-          <li>Animated short film</li>
-          <li>Plushies. Many.</li>
+          <li>Community charity vote</li>
+          <li>First on-chain payout</li>
+          <li>Receipts pinned, forever</li>
         </ul>
       </article>
+    </div>
+  </div>
+</section>
+
+<!-- HOW THE CHARITY FLOW WORKS -->
+<section class="flow" id="flow">
+  <div class="wrap">
+    <span class="section-eyebrow">How it works</span>
+    <h2 class="section-title">From swap to <em>good deed</em>.</h2>
+    <div class="flow-grid">
+      <div class="flow-step">
+        <div class="flow-num">01</div>
+        <h3>You swap $CHARITY</h3>
+        <p>Every buy and sell on pump.fun mints a small creator fee, just like normal pump.fun trades.</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-num">02</div>
+        <h3>Fees route to charity</h3>
+        <p>Pump.fun&rsquo;s charity feature sends <b>100%</b> of those creator fees to a designated wallet &mdash; not to a team.</p>
+      </div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-step">
+        <div class="flow-num">03</div>
+        <h3>Charity gets paid</h3>
+        <p>The community picks the cause. Donations go out on-chain. Receipts pinned for everyone to verify.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -915,8 +990,8 @@
   <img src="mascot_cutout.png" alt="" class="callout-mascot" />
   <img src="mascot_cutout.png" alt="" class="callout-mascot right" />
   <div class="wrap">
-    <h2>You could just &mdash; you know &mdash; be a guy too.</h2>
-    <p>One token. One community. Zero pressure. The cap fits everyone.</p>
+    <h2>Trade the meme. <br/>Fund the cause.</h2>
+    <p>Every swap of $CHARITY sends 100% of creator fees to a real charity. No team wallet, no skim, no nonsense. Just a guy and his clipboard.</p>
     <a class="btn" href="#buy">Get $CHARITY <span class="arrow">→</span></a>
   </div>
 </section>
@@ -972,13 +1047,15 @@
         <img src="mascot_logo.png" alt="" />
         <span>Just a Charity Guy.</span>
       </div>
-      <p>An on-chain memecoin starring a dog in a charity cap. No utility, no roadmap (well, that fake one above), no promises &mdash; just a community of guys.</p>
+      <p>An on-chain memecoin starring a dog in a charity cap. Launched on pump.fun with 100% of creator fees routed to charities chosen by the community.</p>
     </div>
     <div>
       <h5>Navigate</h5>
       <ul>
+        <li><a href="#contract">Contract</a></li>
         <li><a href="#about">About the Guy</a></li>
         <li><a href="#tokenomics">Tokenomics</a></li>
+        <li><a href="#flow">How it Works</a></li>
         <li><a href="#buy">How to Buy</a></li>
         <li><a href="#roadmap">Roadmap</a></li>
       </ul>
@@ -986,10 +1063,11 @@
     <div>
       <h5>Receipts</h5>
       <ul>
+        <li><a href="#" target="_blank" rel="noopener">pump.fun page</a></li>
         <li><a href="#" target="_blank" rel="noopener">DexScreener</a></li>
-        <li><a href="#" target="_blank" rel="noopener">Solscan / Etherscan</a></li>
-        <li><a href="#" target="_blank" rel="noopener">LP Burn TX</a></li>
-        <li><a href="#" target="_blank" rel="noopener">Audit (lol)</a></li>
+        <li><a href="#" target="_blank" rel="noopener">Solscan</a></li>
+        <li><a href="#" target="_blank" rel="noopener">Charity wallet</a></li>
+        <li><a href="#" target="_blank" rel="noopener">Donation TXs</a></li>
       </ul>
     </div>
   </div>
