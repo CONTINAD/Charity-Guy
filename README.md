@@ -1,4 +1,4 @@
-# Just a Charity Guy — $CHARITY
+# Just a Charity Guy — $CGUY
 
 Landing site for the **Just a Charity Guy** memecoin. Single static HTML page styled with hand-stamped, sticker-zine aesthetics — chunky Bungee headlines, Caveat marker scribbles, and a cream / forest-green palette built around the mascot.
 
@@ -13,7 +13,7 @@ Then open <http://localhost:8765>.
 ## Files
 
 | File | Purpose |
-|---|---|
+| --- | --- |
 | `index.html` | The site — single page, no build step |
 | `mascot.png` | Original mascot artwork |
 | `mascot_cutout.png` | Mascot with cream backdrop knocked out (transparent) |
