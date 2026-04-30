@@ -144,6 +144,15 @@
     margin-top:28px;font-size:17px;max-width:520px;color:var(--green-deep);
   }
   .hero-sub b{background:var(--yellow);padding:2px 6px;border:2px solid var(--ink);}
+  .hero-link{
+    background:var(--coral);color:var(--cream-soft);
+    padding:2px 8px;border:2px solid var(--ink);
+    font-weight:700;text-decoration:none;
+    box-shadow: 2px 2px 0 var(--ink);
+    transition:transform .15s, box-shadow .15s;
+    display:inline-block;
+  }
+  .hero-link:hover{transform:translate(-1px,-1px);box-shadow: 3px 3px 0 var(--ink);}
 
   .hero-ctas{margin-top:36px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;}
   .btn{
@@ -374,6 +383,109 @@
   }
   .polaroid-cap{
     font-family:'Caveat',cursive;font-size:26px;text-align:center;margin-top:14px;color:var(--green-deep);
+  }
+
+  /* ---------- BENEFICIARY ---------- */
+  .beneficiary{padding:40px 0 100px;}
+  .bnf-card{
+    background:var(--cream-soft);
+    border:4px solid var(--ink);
+    box-shadow: 14px 14px 0 var(--green-deep);
+    padding:48px;
+    position:relative;
+    overflow:hidden;
+    /* subtle paw-print bg dots */
+    background-image:
+      radial-gradient(rgba(45,90,61,.06) 22%, transparent 24%),
+      radial-gradient(rgba(45,90,61,.06) 22%, transparent 24%);
+    background-size: 28px 28px, 28px 28px;
+    background-position: 0 0, 14px 14px;
+  }
+  .bnf-stamp{
+    position:absolute;top:24px;right:24px;
+    font-family:'Archivo Black',sans-serif;
+    font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--coral);border:3px solid var(--coral);
+    padding:8px 14px;
+    transform:rotate(6deg);
+    background:rgba(255,255,255,.6);
+    box-shadow: 3px 3px 0 rgba(232,93,58,.25);
+  }
+  .bnf-grid{display:grid;grid-template-columns: 1.4fr 1fr;gap:50px;align-items:center;}
+  .bnf-eyebrow{
+    display:inline-block;
+    font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--green-deep);background:var(--yellow);padding:6px 12px;
+    border:2.5px solid var(--ink);box-shadow:var(--shadow-sm);
+    transform:rotate(-1.5deg);margin-bottom:18px;
+  }
+  .bnf-name{
+    font-family:'Bungee',sans-serif;
+    font-size:clamp(48px,6.4vw,84px);line-height:.92;
+    color:var(--green-deep);
+    text-shadow: 5px 5px 0 var(--coral);
+    margin-bottom:8px;
+  }
+  .bnf-tagline{
+    font-family:'Caveat',cursive;font-size:30px;
+    color:var(--coral);margin-bottom:18px;
+    transform:rotate(-1.5deg);display:inline-block;
+  }
+  .bnf-body{
+    font-size:16px;color:var(--ink);max-width:500px;margin-bottom:24px;
+  }
+  .bnf-body b{background:var(--green-mint);padding:1px 6px;border:2px solid var(--ink);}
+  .bnf-meta{
+    display:flex;flex-wrap:wrap;gap:10px;margin-bottom:28px;
+  }
+  .bnf-pill{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--cream);border:2.5px solid var(--ink);
+    padding:8px 14px;
+    font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    box-shadow: var(--shadow-sm);
+  }
+  .bnf-pill .dot{width:8px;height:8px;border-radius:50%;border:1.5px solid var(--ink);}
+  .dot-coral{background:var(--coral);}
+  .dot-yellow{background:var(--yellow);}
+  .dot-mint{background:var(--green-mint);}
+  .bnf-cta{padding:14px 22px;font-size:14px;}
+
+  .bnf-art{
+    position:relative;display:grid;place-items:center;
+    aspect-ratio:1;width:100%;
+  }
+  .bnf-paw{
+    color:var(--green);width:80%;
+    animation: paw-bob 3s ease-in-out infinite;
+    filter: drop-shadow(0 8px 0 rgba(20,20,15,.15));
+  }
+  .bnf-paw svg{width:100%;height:auto;display:block;}
+  @keyframes paw-bob{
+    0%,100%{transform:rotate(-8deg) translateY(0);}
+    50%{transform:rotate(-8deg) translateY(-10px);}
+  }
+  .bnf-stat{
+    position:absolute;bottom:0;right:0;
+    background:var(--coral);color:var(--cream-soft);
+    border:3px solid var(--ink);
+    padding:14px 20px;text-align:center;
+    transform:rotate(6deg);
+    box-shadow: var(--shadow-sm);
+  }
+  .bnf-stat-num{
+    display:block;font-family:'Bungee',sans-serif;font-size:36px;line-height:1;
+  }
+  .bnf-stat-label{
+    display:block;font-family:'Archivo Black',sans-serif;
+    font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+    margin-top:4px;
+  }
+  @media (max-width: 880px){
+    .bnf-card{padding:32px 24px;}
+    .bnf-grid{grid-template-columns:1fr;gap:36px;}
+    .bnf-art{aspect-ratio:1.3/1;}
+    .bnf-stamp{top:16px;right:16px;font-size:9px;padding:6px 10px;}
   }
 
   /* ---------- TOKENOMICS ---------- */
@@ -694,10 +806,10 @@
     </a>
     <div class="nav-links">
       <a href="#contract">Contract</a>
+      <a href="#beneficiary">Charity</a>
       <a href="#tokenomics">Tokenomics</a>
       <a href="#buy">How to Buy</a>
       <a href="#roadmap">Roadmap</a>
-      <a href="#community">Community</a>
     </div>
     <a href="#buy" class="nav-cta">Buy $CGUY</a>
   </div>
@@ -719,9 +831,9 @@
       </h1>
       <p class="hero-sub">
         He wears the cap. He wears the shirt. He's <b>actually doing charity</b>.
-        Launched on pump.fun with <b>100% of creator fees</b> routed to real
-        charities &mdash; chosen by the community, paid out on-chain,
-        receipts public.
+        Launched on pump.fun with <b>100% of creator fees</b> going straight to
+        <a href="https://www.petsinneed.org/" target="_blank" rel="noopener" class="hero-link">Pets In Need</a> &mdash;
+        a no-kill dog &amp; cat shelter saving lives since 1965.
       </p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="#buy">Buy $CGUY <span class="arrow">→</span></a>
@@ -792,15 +904,15 @@
       <h2 class="section-title">A meme coin that <em>actually</em> gives.</h2>
       <p>
         Pump.fun shipped a feature where <b>100% of a token&rsquo;s creator fees can be routed
-        directly to charities</b>. Every swap of $CGUY mints a fee &mdash; that fee goes
-        straight to real-world charities chosen by the community.
+        directly to a charity wallet</b>. Every swap of $CGUY mints a fee &mdash; that fee
+        goes straight to <b>Pets In Need</b>, a no-kill dog &amp; cat shelter in California.
       </p>
       <p>
-        No team cut. No multisig dipping in. The cap-wearing dog up there is the brand;
-        the on-chain receipts are the proof. <b>Trade the meme. Fund the cause.</b>
+        No team cut. No multisig dipping in. No vote on which charity wins this week.
+        Just a dog in a cap raising money for actual dogs in need. <b>Trade the meme. Fund the shelter.</b>
       </p>
       <p style="margin-top:20px;">
-        <span class="stamp">100% fees → charity</span>
+        <span class="stamp">100% fees → shelter</span>
         &nbsp;
         <span class="stamp" style="border-color:var(--green);color:var(--green);">on-chain receipts</span>
       </p>
@@ -809,6 +921,52 @@
     <div class="polaroid">
       <img src="mascot_card.png" alt="Charity Guy portrait" />
       <div class="polaroid-cap">"just a guy doing his thing"</div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIARY -->
+<section class="beneficiary" id="beneficiary">
+  <div class="wrap">
+    <div class="bnf-card">
+      <div class="bnf-stamp">Official Beneficiary</div>
+      <div class="bnf-grid">
+        <div class="bnf-content">
+          <span class="bnf-eyebrow">100% of fees go to</span>
+          <h2 class="bnf-name">Pets In Need</h2>
+          <p class="bnf-tagline">"Saving Lives Since 1965"</p>
+          <p class="bnf-body">
+            Northern California&rsquo;s first <b>no-kill animal shelter</b>. Pets In Need
+            rescues homeless dogs, cats, and small animals from public shelters and
+            cares for them until adoption. Based in Redwood City and Palo Alto, CA &mdash;
+            on the ground since 1965.
+          </p>
+          <div class="bnf-meta">
+            <span class="bnf-pill"><span class="dot dot-coral"></span> No-Kill Shelter</span>
+            <span class="bnf-pill"><span class="dot dot-yellow"></span> Est. 1965</span>
+            <span class="bnf-pill"><span class="dot dot-mint"></span> Redwood City &amp; Palo Alto, CA</span>
+          </div>
+          <a class="btn btn-primary bnf-cta" href="https://www.petsinneed.org/" target="_blank" rel="noopener">
+            Visit petsinneed.org <span class="arrow">↗</span>
+          </a>
+        </div>
+        <div class="bnf-art">
+          <div class="bnf-paw" aria-hidden="true">
+            <!-- paw print SVG -->
+            <svg viewBox="0 0 200 200" fill="currentColor">
+              <ellipse cx="100" cy="135" rx="55" ry="42"/>
+              <ellipse cx="55" cy="80" rx="22" ry="28"/>
+              <ellipse cx="145" cy="80" rx="22" ry="28"/>
+              <ellipse cx="30" cy="125" rx="18" ry="22"/>
+              <ellipse cx="170" cy="125" rx="18" ry="22"/>
+            </svg>
+          </div>
+          <div class="bnf-stat">
+            <span class="bnf-stat-num">60+</span>
+            <span class="bnf-stat-label">years saving lives</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -822,7 +980,7 @@
         <h2 class="section-title">Tokenomics <em>(very serious)</em></h2>
         <p style="font-size:16px;max-width:520px;opacity:.92;">
           Launched on pump.fun. <b style="color:var(--yellow);">100% of creator fees flow
-          to community-picked charities</b> &mdash; verifiable on-chain, every wallet, every block.
+          straight to Pets In Need</b> &mdash; one wallet, one charity, verifiable on-chain.
         </p>
       </div>
       <img src="coin.png" alt="" class="toko-coin" />
@@ -947,11 +1105,11 @@
       <article class="road-card">
         <span class="road-stamp">Soon™</span>
         <div class="road-phase">Phase 04</div>
-        <h3 class="road-title">First Donation</h3>
+        <h3 class="road-title">First Payout</h3>
         <ul class="road-list">
-          <li>Community charity vote</li>
-          <li>First on-chain payout</li>
-          <li>Receipts pinned, forever</li>
+          <li>First donation to Pets In Need</li>
+          <li>On-chain TX pinned everywhere</li>
+          <li>Total donated dashboard</li>
         </ul>
       </article>
     </div>
@@ -972,14 +1130,14 @@
       <div class="flow-arrow">→</div>
       <div class="flow-step">
         <div class="flow-num">02</div>
-        <h3>Fees route to charity</h3>
-        <p>Pump.fun&rsquo;s charity feature sends <b>100%</b> of those creator fees to a designated wallet &mdash; not to a team.</p>
+        <h3>Fees route to the wallet</h3>
+        <p>Pump.fun&rsquo;s charity feature sends <b>100%</b> of those creator fees to the Pets In Need wallet &mdash; not to a team.</p>
       </div>
       <div class="flow-arrow">→</div>
       <div class="flow-step">
         <div class="flow-num">03</div>
-        <h3>Charity gets paid</h3>
-        <p>The community picks the cause. Donations go out on-chain. Receipts pinned for everyone to verify.</p>
+        <h3>Pets In Need gets paid</h3>
+        <p>Donations go out on-chain to the no-kill shelter. Receipts pinned forever for anyone to verify.</p>
       </div>
     </div>
   </div>
@@ -991,7 +1149,7 @@
   <img src="mascot_cutout.png" alt="" class="callout-mascot right" />
   <div class="wrap">
     <h2>Trade the meme. <br/>Fund the cause.</h2>
-    <p>Every swap of $CGUY sends 100% of creator fees to a real charity. No team wallet, no skim, no nonsense. Just a guy and his clipboard.</p>
+    <p>Every swap of $CGUY sends 100% of creator fees to <b>Pets In Need</b>, a no-kill dog &amp; cat shelter. No team wallet, no skim, no nonsense.</p>
     <a class="btn" href="#buy">Get $CGUY <span class="arrow">→</span></a>
   </div>
 </section>
@@ -1047,13 +1205,13 @@
         <img src="mascot_logo.png" alt="" />
         <span>Just a Charity Guy.</span>
       </div>
-      <p>An on-chain memecoin starring a dog in a charity cap. Launched on pump.fun with 100% of creator fees routed to charities chosen by the community.</p>
+      <p>An on-chain memecoin starring a dog in a charity cap. Launched on pump.fun with 100% of creator fees routed straight to <a href="https://www.petsinneed.org/" target="_blank" rel="noopener">Pets In Need</a>, a no-kill dog &amp; cat shelter saving lives since 1965.</p>
     </div>
     <div>
       <h5>Navigate</h5>
       <ul>
         <li><a href="#contract">Contract</a></li>
-        <li><a href="#about">About the Guy</a></li>
+        <li><a href="#beneficiary">Beneficiary</a></li>
         <li><a href="#tokenomics">Tokenomics</a></li>
         <li><a href="#flow">How it Works</a></li>
         <li><a href="#buy">How to Buy</a></li>
@@ -1063,10 +1221,10 @@
     <div>
       <h5>Receipts</h5>
       <ul>
+        <li><a href="https://www.petsinneed.org/" target="_blank" rel="noopener">Pets In Need ↗</a></li>
         <li><a href="#" target="_blank" rel="noopener">pump.fun page</a></li>
         <li><a href="#" target="_blank" rel="noopener">DexScreener</a></li>
         <li><a href="#" target="_blank" rel="noopener">Solscan</a></li>
-        <li><a href="#" target="_blank" rel="noopener">Charity wallet</a></li>
         <li><a href="#" target="_blank" rel="noopener">Donation TXs</a></li>
       </ul>
     </div>
