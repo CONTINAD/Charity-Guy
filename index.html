@@ -221,6 +221,87 @@
   }
   @keyframes spin-slow{to{transform:rotate(360deg);}}
 
+  /* ---------- CA BANNER ---------- */
+  .ca-banner{
+    padding: 30px 0 50px;
+    position:relative;
+  }
+  .ca-banner-inner{
+    background:var(--cream-soft);
+    border:4px solid var(--ink);
+    box-shadow: 0 8px 0 var(--green-deep);
+    padding:22px 28px;
+    display:grid;grid-template-columns: auto 1fr;gap:24px;align-items:center;
+    position:relative;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .ca-banner-inner::before{
+    content:'CA';
+    position:absolute;top:-18px;right:24px;
+    font-family:'Bungee',sans-serif;font-size:18px;
+    background:var(--coral);color:var(--cream-soft);
+    border:3px solid var(--ink);padding:4px 12px;
+    transform:rotate(4deg);
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  .ca-banner-label{
+    display:flex;flex-direction:column;gap:6px;
+    border-right:3px dashed var(--ink);padding-right:24px;
+  }
+  .ca-pill{
+    display:inline-block;
+    background:var(--green-deep);color:var(--yellow);
+    font-family:'Bungee',sans-serif;font-size:18px;
+    padding:6px 12px;border:2.5px solid var(--ink);
+    box-shadow: var(--shadow-sm);
+    letter-spacing:.04em;
+  }
+  .ca-banner-eyebrow{
+    font-family:'Archivo Black',sans-serif;
+    font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--green-deep);opacity:.8;
+  }
+  .ca-banner-value-wrap{
+    display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  }
+  .ca-banner-value{
+    font-family:'Space Mono',monospace;
+    font-size:15px;font-weight:700;
+    color:var(--ink);
+    background: var(--cream);
+    padding:10px 14px;border:2.5px solid var(--ink);
+    flex:1;min-width:240px;
+    word-break:break-all;line-height:1.3;
+  }
+  .ca-banner-copy{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--green-bright);color:var(--cream-soft);
+    border:2.5px solid var(--ink);
+    font-family:'Archivo Black',sans-serif;
+    font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+    padding:11px 18px;
+    box-shadow: var(--shadow-sm);
+    transition: transform .15s, box-shadow .15s, background .2s;
+    white-space:nowrap;
+  }
+  .ca-banner-copy:hover{
+    transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--ink);
+    background:var(--coral);
+  }
+  .ca-banner-copy:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--ink);}
+  .ca-banner-copy.copied{background:var(--green);}
+  .ca-banner-copy .copy-icon{font-size:16px;line-height:1;}
+  .ca-banner-note{
+    margin-top:14px;text-align:center;
+    font-family:'Caveat',cursive;font-size:20px;
+    color:var(--green-deep);opacity:.85;
+  }
+  @media (max-width:760px){
+    .ca-banner-inner{grid-template-columns:1fr;gap:16px;}
+    .ca-banner-label{border-right:none;border-bottom:3px dashed var(--ink);padding-right:0;padding-bottom:14px;}
+    .ca-banner-value{font-size:13px;}
+  }
+
   /* ---------- MARQUEE ---------- */
   .marquee{
     border-block:4px solid var(--ink);
@@ -440,6 +521,7 @@
   .social.tg{background:var(--green-bright);color:var(--cream);}
   .social.dex{background:var(--yellow);color:var(--ink);}
   .social.tg-chat{background:var(--coral);color:var(--cream);}
+  .social.explorer{background:var(--green-mint);color:var(--green-deep);}
 
   .social-icon{font-family:'Bungee',sans-serif;font-size:48px;line-height:1;}
   .social h4{font-family:'Bungee',sans-serif;font-size:22px;line-height:1;margin-top:18px;}
@@ -565,7 +647,7 @@
       <span>Just&nbsp;a&nbsp;Charity&nbsp;Guy</span>
     </a>
     <div class="nav-links">
-      <a href="#about">About</a>
+      <a href="#contract">Contract</a>
       <a href="#tokenomics">Tokenomics</a>
       <a href="#buy">How to Buy</a>
       <a href="#roadmap">Roadmap</a>
@@ -610,6 +692,28 @@
       </div>
       <img class="sticker-coin" src="coin.png" alt="" />
     </div>
+  </div>
+</section>
+
+<!-- CONTRACT ADDRESS BANNER -->
+<section class="ca-banner" id="contract">
+  <div class="wrap">
+    <div class="ca-banner-inner">
+      <div class="ca-banner-label">
+        <span class="ca-pill">$CHARITY</span>
+        <span class="ca-banner-eyebrow">Contract Address</span>
+      </div>
+      <div class="ca-banner-value-wrap">
+        <code class="ca-banner-value" id="ca-value-main">CHRTYxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</code>
+        <button class="ca-banner-copy" id="ca-copy-main">
+          <span class="copy-icon">⧉</span>
+          <span class="copy-label">Copy</span>
+        </button>
+      </div>
+    </div>
+    <p class="ca-banner-note">
+      always verify the CA before swapping &mdash; impersonators exist, the guy does not endorse them
+    </p>
   </div>
 </section>
 
@@ -833,20 +937,20 @@
           <p>@justacharityguy</p>
         </div>
       </a>
-      <a class="social tg" href="#" target="_blank" rel="noopener">
-        <span class="arrow-out">↗</span>
-        <div class="social-icon">✈</div>
-        <div>
-          <h4>Telegram</h4>
-          <p>t.me/justacharityguy</p>
-        </div>
-      </a>
       <a class="social dex" href="#" target="_blank" rel="noopener">
         <span class="arrow-out">↗</span>
         <div class="social-icon">📈</div>
         <div>
           <h4>DexScreener</h4>
           <p>chart go up (please)</p>
+        </div>
+      </a>
+      <a class="social explorer" href="#" target="_blank" rel="noopener">
+        <span class="arrow-out">↗</span>
+        <div class="social-icon">⛓</div>
+        <div>
+          <h4>Explorer</h4>
+          <p>verify on-chain</p>
         </div>
       </a>
       <a class="social tg-chat" href="#" target="_blank" rel="noopener">
@@ -902,21 +1006,36 @@
   // year
   document.getElementById('yr').textContent = new Date().getFullYear();
 
-  // copy CA
-  const caBtn  = document.getElementById('ca-copy');
-  const caVal  = document.getElementById('ca-value');
-  const toast  = document.getElementById('toast');
-  caBtn.addEventListener('click', async () => {
-    try {
-      await navigator.clipboard.writeText(caVal.textContent.trim());
+  // copy CA — single source of truth, sync both displayed values + both buttons
+  const caValMain = document.getElementById('ca-value-main');
+  const caValTok  = document.getElementById('ca-value');
+  const toast     = document.getElementById('toast');
+  const CA = caValMain.textContent.trim();
+  // keep both spans in sync if you ever update CA in one place
+  caValTok.textContent = CA;
+
+  function copyCA(btn){
+    const original = btn.querySelector('.copy-label')?.textContent || btn.textContent;
+    navigator.clipboard.writeText(CA).then(() => {
+      btn.classList.add('copied');
+      const labelEl = btn.querySelector('.copy-label');
+      if (labelEl) labelEl.textContent = 'Copied!';
+      else btn.textContent = 'Copied!';
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 1800);
-    } catch (e) {
+      setTimeout(() => {
+        btn.classList.remove('copied');
+        if (labelEl) labelEl.textContent = original;
+        else btn.textContent = original;
+      }, 1800);
+    }).catch(() => {
       toast.textContent = 'Couldn’t copy — select it manually';
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 2200);
-    }
-  });
+    });
+  }
+  document.getElementById('ca-copy-main').addEventListener('click', e => copyCA(e.currentTarget));
+  document.getElementById('ca-copy').addEventListener('click', e => copyCA(e.currentTarget));
 
   // tiny parallax wobble on mascot
   const mascot = document.querySelector('.mascot-img');
